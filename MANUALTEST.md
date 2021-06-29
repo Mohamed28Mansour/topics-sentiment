@@ -2,14 +2,26 @@
 
 The purpose here is to test the outcome of using the library based on the logic inserted for the word color
 
-## Expected outcome
+## Test: words with sentiment score > 60 should have color green
 
-- words with sectiment score > 60 have the color green
-- words with sectiment score < 40 have the color red
-- remaining words should have the color grey
+Berlin has a sentiment score of 65, Berlin should have color green
 
-## Test outcome
+### Test outcome
 
-- words with sectiment score > 60 have the color green :white_check_mark:
-- words with sectiment score < 40 have the color red :white_check_mark:
-- remaining words should have the color grey :white_check_mark:
+Berlin has color green :white_check_mark:
+
+## Test: words with sentiment score < 40 should have color red
+
+Hammered has a sentiment score of 20, Hammered should have color red
+
+### Test outcome
+
+Hammered has color red :white_check_mark:
+
+## Test: words with sentiment score > 40 and < 60 should have color grey
+
+Quantified Drunk has a sentiment score of 50, Hammered should have color red
+
+### Test outcome
+
+Quantified Drunk has color grey :white_check_mark:
