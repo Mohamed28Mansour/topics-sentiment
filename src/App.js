@@ -6,11 +6,28 @@ import DetailsContainer from "./DetailsContainer";
 function App() {
   const [selectedWord, setSelectedWord] = useState({});
 
+  const valueToAssign = (number) => {
+    if (number > 50) {
+      return 60;
+    } else if (number <= 50 && number > 30) {
+      return 40;
+    } else if (number <= 30 && number > 20) {
+      return 30;
+    } else if (number <= 20 && number > 10) {
+      return 20;
+    } else if (number <= 10 && number > 5) {
+      return 10;
+    } else {
+      return 5;
+    }
+  };
+
   const words = Object.values(topics)[0].map((topic) => {
     return {
       id: topic.id,
       text: topic.label,
-      value: topic.volume,
+      value: valueToAssign(topic.volume),
+      popularity: topic.volume,
       score: topic.sentimentScore,
       negativeSentiment: topic.sentiment.negative
         ? topic.sentiment.negative
@@ -26,9 +43,9 @@ function App() {
     enableTooltip: false,
     deterministic: true,
     fontFamily: "impact",
-    fontSizes: [10, 60],
+    fontSizes: [15, 65],
     fontStyle: "normal",
-    padding: 40,
+    padding: 5,
     spiral: "archimedean",
   };
 
@@ -46,18 +63,18 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <div
-        style={{
-          height: "80%",
-          width: "60%",
-          backgroundColor: "lightBlue",
-          display: "flex",
-        }}
-      >
-        <ReactWordcloud callbacks={callbacks} words={words} options={options} />
+    <div>
+      <h1 className="header">My topics cloud</h1>
+      <div className="app-container">
+        <div className="word-cloud-container">
+          <ReactWordcloud
+            callbacks={callbacks}
+            words={words}
+            options={options}
+          />
+        </div>
+        <DetailsContainer selectedWord={selectedWord} />
       </div>
-      <DetailsContainer selectedWord={selectedWord} />
     </div>
   );
 }

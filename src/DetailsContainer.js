@@ -4,7 +4,7 @@ const DetailsContainer = ({ selectedWord }) => {
   const {
     id,
     text,
-    value,
+    popularity,
     score,
     negativeSentiment,
     neutralSentiment,
@@ -25,7 +25,9 @@ const DetailsContainer = ({ selectedWord }) => {
 
   return (
     <div className="details">
-      <h3>How do people find me?</h3>
+      <h3 className="details-header" data-testid="details-text">
+        How do people find {text ? text : "me?"}
+      </h3>
       <img
         src={emojiDisplay(score)}
         alt="emoji display"
@@ -33,19 +35,34 @@ const DetailsContainer = ({ selectedWord }) => {
         data-testid="emoji-test"
       />
       {Object.keys(selectedWord).length === 0 ? null : (
-        <div key={id} data-testid="details-container">
-          <h4 data-testid="details-text">Information on {text}:</h4>
+        <div
+          key={id}
+          data-testid="details-container"
+          className="details-container"
+        >
           <p data-testid="total-mentions">
-            Total mentions on social media: {value}
+            Total mentions on social media: {popularity}
           </p>
-          <div>
-            <p>Positive Mentions: </p>
-            <span data-testid="total-positives">{positiveSentiment}</span>
-            <p>Neutral Mentions: </p>
-            <span data-testid="total-neutral">{neutralSentiment}</span>
-            <p>Negative Mentions: </p>
-            <span data-testid="total-negative">{negativeSentiment}</span>
-          </div>
+          <ul className="sentiment-list">
+            <li>
+              Positive Mentions:
+              <span data-testid="total-positives" className="positive">
+                {positiveSentiment}
+              </span>
+            </li>
+            <li>
+              Neutral Mentions:
+              <span data-testid="total-neutral" className="neutral">
+                {neutralSentiment}
+              </span>
+            </li>
+            <li>
+              Negative Mentions:
+              <span data-testid="total-negative" className="negative">
+                {negativeSentiment}
+              </span>
+            </li>
+          </ul>
         </div>
       )}
     </div>

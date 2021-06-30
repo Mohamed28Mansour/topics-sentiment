@@ -3,7 +3,7 @@ import DetailsContainer from "./DetailsContainer";
 
 const correctObj = {
   text: "word",
-  value: 1,
+  popularity: 1,
   score: 10,
   negativeSentiment: 2,
   neutralSentiment: 3,
@@ -29,7 +29,7 @@ describe("DetailsContainer", () => {
     expect(screen.getByTestId("details-text")).toHaveTextContent("word");
   });
 
-  test("value is displayed when passed as props", () => {
+  test("popularity is displayed when passed as props", () => {
     render(<DetailsContainer selectedWord={correctObj} />);
     expect(screen.getByTestId("total-mentions")).toHaveTextContent("1");
   });
